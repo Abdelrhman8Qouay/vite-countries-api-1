@@ -5,7 +5,6 @@ import axios from "axios";
 import { ref, onMounted, defineProps } from "vue";
 
 const props = defineProps(["common"]);
-
 const countryDetail = ref([]);
 
 onMounted(() => {
@@ -14,8 +13,7 @@ onMounted(() => {
     .then((response) => {
       countryDetail.value = response.data;
     })
-    .catch((error) => console.log(error))
-    .finally(() => console.log(countryDetail.value[0].name.common));
+    .catch((error) => console.log(error));
 });
 </script>
 
@@ -27,7 +25,6 @@ onMounted(() => {
     <br />
     <div class="back">
       <router-link to="/">
-        <ion-icon name="arrow-back-sharp"></ion-icon>
         <p>Back</p>
       </router-link>
     </div>
@@ -42,22 +39,24 @@ onMounted(() => {
         <div class="labRL">
           <div class="leftInf">
             <span>{{ countryDetail[0].name.common }}</span>
-            <p><span>Native name:</span> {{ countryDetail[0].nativeName }}</p>
-            <p><span>population:</span> {{ countryDetail[0].population }}</p>
-            <p><span>Region:</span> {{ countryDetail[0].region }}</p>
-            <p><span>Sub region:</span> {{ countryDetail[0].subregion }}</p>
-            <p><span>Capital:</span> {{ countryDetail[0].capital[0] }}</p>
+            <p v-for="native in countryDetail[0].name.nativeName" :key="native">
+              <span>Native name: </span> {{ native.common }}
+            </p>
+            <p><span>population: </span> {{ countryDetail[0].population }}</p>
+            <p><span>Region: </span> {{ countryDetail[0].region }}</p>
+            <p><span>Sub region: </span> {{ countryDetail[0].subregion }}</p>
+            <p><span>Capital: </span> {{ countryDetail[0].capital[0] }}</p>
           </div>
           <div class="rightInf">
-            <p><span>Top Level Domain:</span> {{ countryDetail[0].cca3 }}</p>
+            <p><span>Top Level Domain: </span> {{ countryDetail[0].cca3 }}</p>
             <p>
-              <span>Currencies:</span>
+              <span>Currencies: </span>
               <a v-for="curr in countryDetail[0].currencies" :key="curr">{{
                 curr.name
               }}</a>
             </p>
             <p>
-              <span>Languages:</span>
+              <span>Languages: </span>
               <a v-for="lang in countryDetail[0].languages" :key="lang">
                 {{ lang }}</a
               >
@@ -106,7 +105,8 @@ onMounted(() => {
   justify-content: space-between;
   padding: 40px 60px;
   .imgDeta {
-    width: 40%;
+    max-width: 450px;
+    max-height: 450px;
     img {
       width: 100%;
       height: 100%;
@@ -196,6 +196,7 @@ onMounted(() => {
   }
   .detailOfCountries .detas {
     flex-direction: column;
+    padding: 20px 10px;
   }
   .detailOfCountries .detas .imgDeta {
     width: 80%;

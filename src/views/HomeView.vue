@@ -2,7 +2,8 @@
 <template>
   <div class="home">
     <div class="formDivSearch">
-      <ion-icon id="searchIcon" name="search-sharp"></ion-icon>
+      <!-- <ion-icon id="searchIcon" name="search-sharp"></ion-icon> -->
+      <font-awesome-icon id="searchIcon" icon="fa-solid fa-magnifying-glass" />
       <input
         id="searchBox"
         v-model="search"
@@ -11,8 +12,8 @@
       />
       <div class="forFilter">
         <a class="aFilter" @click="ulFilter = !ulFilter"
-          >Filter By Region <ion-icon name="chevron-down-sharp"></ion-icon
-        ></a>
+          >Filter By Region <font-awesome-icon icon="fa-solid fa-chevron-down"
+        /></a>
         <ul v-if="ulFilter">
           <li>
             <label for="radioAfrica"
@@ -92,8 +93,6 @@
         </ul>
       </div>
     </div>
-
-    <font-awesome-icon class="fa-duotone fa-sun" />
 
     <h1 v-if="errorMsg !== null">
       Sorry, an error has occurred {{ errorMsg }}
@@ -318,7 +317,7 @@ function formatNumbers(value) {
         }
       }
       .detailCard {
-        padding: 14px 15px 44px 15px;
+        padding: 15px;
         display: flex;
         flex-direction: column;
         gap: 8px;

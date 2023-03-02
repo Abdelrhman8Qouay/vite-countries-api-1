@@ -1,6 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { ref, defineComponent } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+// Import The Components
+import footer from "./components/Footer.vue";
+const FooterComp = defineComponent(footer);
 
 const colorMode = ref(false);
 
@@ -16,10 +19,10 @@ function changeMode() {
       <h3>where in the world?</h3>
     </RouterLink>
     <div class="btnMode" @click="changeMode()">
-      <ion-icon
+      <font-awesome-icon
         id="icon"
-        :name="colorMode ? 'moon-sharp' : 'sunny-sharp'"
-      ></ion-icon>
+        :icon="colorMode ? 'fa-solid fa-moon' : 'fa-solid fa-sun'"
+      />
       <p>{{ colorMode ? "Dark Mode" : "Light Mode" }}</p>
     </div>
   </header>
@@ -27,6 +30,8 @@ function changeMode() {
   <main>
     <RouterView />
   </main>
+
+  <FooterComp />
 </template>
 
 <style lang="scss" scoped>
@@ -48,7 +53,8 @@ header {
   .btnMode {
     display: flex;
     flex-direction: row;
-    gap: 3px;
+    align-items: center;
+    gap: 10px;
     color: var(--Blue-text);
     margin-right: 20px;
     font-weight: 600;
@@ -59,5 +65,6 @@ header {
 
 #app main {
   background-color: var(---Gray-background);
+  overflow: auto;
 }
 </style>
